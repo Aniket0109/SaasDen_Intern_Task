@@ -14,8 +14,6 @@ async function getAccessToken(code) {
    let redirect_uri="http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fredirect";
    let grant_type="authorization_code"
 
-    // const res = await fetch(`https://accounts.zoho.com/oauth/v2/token?code=${code}&client_id=${client_id}&client_secret=${client_secret}&redirect_uri=${redirect_uri}&grant_type=${grant_type}`)
-    
     const res = await axios({
         url: `https://accounts.zoho.in/oauth/v2/token?code=${code}&client_id=${client_id}&client_secret=${client_secret}&redirect_uri=${redirect_uri}&grant_type=${grant_type}`,
         method: "POST",
@@ -65,61 +63,5 @@ app.get('/data', (req, res) => {
         console.log(error);
       });
 })
-
-
-
-
-
-
-// =========================================================================================================
-
-// One login API
-
-
-// =========================================================================================================
-
-
-
-const client_id = "17e41d8fc0168d60b308466ee30bc3d07c26c91d2453778e284572e4b3d2ec48"
-const client_secret = "759d6292316bfcc86c7cba0ddd3877e480cdba1f72b1b61bbdfca8b1efa93d50"
-
-// let oneConfig = {
-//   method: 'post',
-//   url: 'https://saaden-bits-2o.onelogin.com/auth/oauth2/v2/token',
-//   headers: { 
-//     'Authorization': new Buffer(`Basic ${client_id}:${client_secret}`).toString('base64'), 
-//     "Content-Type":"application/json"
-//   },
-//   body: JSON.stringify({
-//     grant_type: "client_credentials"
-//  })
-// };
-// fetch(oneConfig.url,oneConfig).then(res => {
-//   res.json().then(console.log)
-// }).catch(err => {
-//   console.log(err);
-// })
-
-
-const request = require("request")
-
-let options = {
-  method: 'POST',
-  uri: 'https://saaden-bits-2o.onelogin.com/auth/oauth2/v2/token',
-  auth: {
-    user: client_id,
-    pass: client_secret
-  },
-  json: {
-    grant_type: 'client_credentials'
-  }
-}
-
-request(options, function(error, response, body){
-  console.log(body);
-  let aToken = body.access_token;
-  console.log("Access Token >> "+aToken);
-})
-      
 
 app.listen("3000", () => console.log("Server started"))
