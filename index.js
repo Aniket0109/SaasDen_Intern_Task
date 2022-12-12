@@ -16,20 +16,12 @@ async function getAccessToken(code) {
 
     const res = await axios({
         url: `https://accounts.zoho.in/oauth/v2/token?code=${code}&client_id=${client_id}&client_secret=${client_secret}&redirect_uri=${redirect_uri}&grant_type=${grant_type}`,
-        method: "POST",
-        // body: {
-        //     code,
-        //     client_id,
-        //     client_secret,
-        //     redirect_uri,
-        //     grant_type
-        //     }
+        method: "POST"
     } )
     console.log(res.data);
 
     accessToken = res.data.access_token;
 
-    // fs.writeFileSync('error.html', data, "utf-8");
 }
 
 app.get('/', (req, res) => {
